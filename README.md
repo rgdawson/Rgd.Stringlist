@@ -15,7 +15,7 @@ TRgdStringlist is a record variable replacement for TStringList that does not ne
       RichEdit.Lines.AddStrings(strings);
     end;
 
-  The difference between this and the Makovsek implementation is:
+  This implementation is different that Makovsek's as follows:
 
     (1) This implementation uses Delphi's Custom Managed Record class operators.
         I use the class operator Initialize() and Finalize() to Create/Free the internal TStringlist.
