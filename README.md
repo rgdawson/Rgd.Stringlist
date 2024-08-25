@@ -25,10 +25,10 @@ need to be create/freed.
         Basically, A := B is the same as A.Assign(B)
     (2) CommaText property always uses StrictDelimiter = True
         Use DelimitedText property if you need StrictDelimer = False
-    (3) When passing a TStringlist as a parameter to a function, if passed 
+    (3) When passing a StringList as a parameter to a function, if passed 
         as a value instead of var or const, a new record gets created and all
         the strings copied to the value parameter as you would expect.
-    (4) Implicits allow you to pass a Stringlist to TObject, TPersistent, 
+    (4) Implicits allow you to pass a StringList to TObject, TPersistent, 
         TStrings, and TStringlist.
     (5) Based on the TStringlist implementation current as of Delphi 12.  If using
         with an older version of Delphi, you may need to remove refences to
