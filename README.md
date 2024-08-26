@@ -27,12 +27,12 @@ need to be created/freed.
 
   Differences to TStringlist:
   
-    (1) When passing a StringList as a parameter to a function, if passed 
-        as a value instead of var or const, a new record gets created and all
-        the strings copied to the value parameter as you would expect.
-    (2) CommaText property always uses StrictDelimiter = True
+    (1) When passing a StringList as a value parameter to a function, instead 
+        of var or const, a new record gets created and all the strings are copied 
+        to the new record's internal TStringlist, leaving the original param unchanged.
+    (2) CommaText property always uses StrictDelimiter = True (my own preference)
         Use DelimitedText property if you need StrictDelimer = False
-    (3) Some additional functions have been added, such as set functions, and more
+    (3) Some additional functions have been added, such as set functions, and more...
 
  Other:   
 
