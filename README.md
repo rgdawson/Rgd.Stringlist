@@ -36,6 +36,6 @@ need to be created/freed.
 
  Other:   
 
-    (1) This is based on the TStringlist implementation current as of Delphi 12.  If using
+    (1) This is based on Delphi's TStringlist implementation as of Delphi 12.  If using
         with an older version of Delphi, you may need to remove refences to
         missing members that were not present in an ealier version of Delphi.
