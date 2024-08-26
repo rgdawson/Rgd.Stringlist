@@ -49,6 +49,6 @@ need to be created/freed.
             - Create a new TRgdStringlist with same properties as Strings1.
 
         WARNING, DO NOT USE:  MyStrings := Default(Stringlist);
-          as this causes a memory leak as MyStringlist gets Initialized twice and finalized once
-          and the original FData does not get freed.  Not sure why yet, cuz I thought it should.
-          INSTEAD, use MyStrings := Stringlist.Default;}
+          as this causes a memory leak where MyStrings gets Initialized twice and finalized once
+          and the original FData does not get freed.
+          INSTEAD, use: MyStrings := Stringlist.Default;}
