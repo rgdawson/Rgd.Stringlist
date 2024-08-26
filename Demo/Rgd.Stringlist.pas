@@ -838,7 +838,7 @@ begin
 end;
 
 class function TRgdStringlist.Default(const RgdStrings: TRgdStringlist): TRgdStringlist;
-{This constructs a new record that inherites the proprties of RgdStrings param}
+{This constructs a new record that inherits the properties of RgdStrings param}
 begin
   Result := TRgdStringlist.Default;
   Result.CaseSensitive      := RgdStrings.CaseSensitive;
