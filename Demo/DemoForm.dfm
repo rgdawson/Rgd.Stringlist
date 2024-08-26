@@ -78,4 +78,13 @@ object MainForm: TMainForm
     TabOrder = 5
     OnClick = btnCloseClick
   end
+  object btnFunctionResult: TButton
+    Left = 8
+    Top = 101
+    Width = 193
+    Height = 25
+    Caption = 'Function Result'
+    TabOrder = 6
+    OnClick = btnFunctionResultClick
+  end
 end

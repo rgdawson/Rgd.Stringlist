@@ -30,12 +30,14 @@ type
     Button9: TButton;
     btnClear: TButton;
     btnClose: TButton;
+    btnFunctionResult: TButton;
     procedure btnTest1Click(Sender: TObject);
     procedure btnAlignClick(Sender: TObject);
     procedure Button9Click(Sender: TObject);
     procedure btnClearClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure btnCloseClick(Sender: TObject);
+    procedure btnFunctionResultClick(Sender: TObject);
   private
     //
   public
@@ -186,6 +188,44 @@ begin
   Memo1.Lines.Add('----------------------');
   Memo1.Lines.Add('END: Delimiter Align ');
   Memo1.Lines.Add('======================');
+  Memo1.Lines.EndUpdate;
+end;
+
+function AllCaps(const Strings: Stringlist): Stringlist;
+begin
+  Result.Text := UpperCase(Strings.Text);
+end;
+
+procedure TMainForm.btnFunctionResultClick(Sender: TObject);
+var
+  SL1, SL2: Stringlist;
+begin
+  Memo1.Lines.BeginUpdate;
+  Memo1.Lines.Add(StringOfChar('=', 70));
+  Memo1.Lines.Add('BEGIN: function AllCaps(): Stringlist');
+  SL1.AddStrings(['Greg', 'Monica', 'Robert', 'Bob', 'Mark']);
+
+  Memo1.Lines.Add(StringOfChar('-', 70));
+  Memo1.Lines.Add('Code: SL2 := AllCaps(SL1);');
+  Memo1.Lines.Add(StringOfChar('-', 70));
+  SL2 := AllCaps(SL1);
+  Memo1.Lines.Add(StringOfChar('-', 70));
+  Memo1.Lines.AddStrings(SL2);
+  Memo1.Lines.Add(Format('Count = %d', [SL2.Count]));
+  Memo1.Lines.Add(StringOfChar('-', 70));
+
+  Memo1.Lines.Add('Code: SL1 := AllCaps(SL1);');
+  Memo1.Lines.Add(StringOfChar('-', 70));
+  SL1 := AllCaps(SL1);
+  Memo1.Lines.Add(StringOfChar('-', 70));
+  Memo1.Lines.AddStrings(SL1);
+  Memo1.Lines.Add(Format('Count = %d', [SL1.Count]));
+  Memo1.Lines.Add(StringOfChar('-', 70));
+
+  //SL1 := SL1;
+  //SL2 := Sl1;
+  Memo1.Lines.Add('END: function AllCaps(): Stringlist');
+  Memo1.Lines.Add(StringOfChar('=', 70));
   Memo1.Lines.EndUpdate;
 end;
 
