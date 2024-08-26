@@ -1,5 +1,6 @@
 # Rgd.Stringlist
-A Delphi Custom Managed Record implementation of TStringlist
+A Delphi Custom Managed Record implementation of TStringlist.
+(Delphi 10.4 and later)
 
 Stringlist is a record variable replacement for TStringList that does not 
 need to be created/freed.  
