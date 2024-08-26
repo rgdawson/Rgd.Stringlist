@@ -17,12 +17,13 @@ need to be created/freed.
     end;
 
   Custom Managed Record class operators:
-
-    (1) This implementation uses Delphi's Custom Managed Record class operators.
-        The class operators Initialize() and Finalize() Create and Free the internal
+  
+    (1) This implementation uses Delphi's Custom Managed Record class operators Initialize, Finalize, and 
+        Assign which were introduced in Delphi 10.4.
+    (1) The class operators Initialize() and Finalize() Create and Free the internal
         TStringlist. Each instance has its own unique internal TStringlist, 
         so no need for reference counting on the internal TStringlist.
-        Basically, A := B is the same as A.Assign(B)
+        The class operator Assign() performs, A := B, and is the same as A.Assign(B).
     (2) Implicits allow you to pass a StringList to TObject, TPersistent,
         TStrings, and TStringlist.
 
