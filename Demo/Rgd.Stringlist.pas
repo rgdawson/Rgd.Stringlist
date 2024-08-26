@@ -215,7 +215,7 @@ type
   public
     {Additional "constructors"}
     class function Default(QuoteChar, Delimiter: Char; StrictDelimiter: Boolean): TRgdStringlist; overload; static;
-    class function Default(const [ref] RgdStrings: TRgdStringlist): TRgdStringlist; overload; static;
+    class function Default(const RgdStrings: TRgdStringlist): TRgdStringlist; overload; static;
     {Additional methods}
     function CommaText2: string;
     function IndexOfSubString    (SubStr: string): integer;
@@ -837,7 +837,7 @@ begin
   Result.StrictDelimiter := StrictDelimiter;
 end;
 
-class function TRgdStringlist.Default(const [ref] RgdStrings: TRgdStringlist): TRgdStringlist;
+class function TRgdStringlist.Default(const RgdStrings: TRgdStringlist): TRgdStringlist;
 {This constructs a new record that inherites the proprties of RgdStrings param}
 begin
   Result := TRgdStringlist.Default;
