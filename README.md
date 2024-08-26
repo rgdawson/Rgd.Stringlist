@@ -18,11 +18,11 @@ need to be created/freed.
   Custom Managed Record class operators:
 
     (1) This implementation uses Delphi's Custom Managed Record class operators.
-        I use the class operator Initialize() and Finalize() to Create/Free 
-        the internal TStringlist. Each instance has its own unique internal 
-        TStringlist, so no need for reference counting on the internal TStringlist.
+        The class operators Initialize() and Finalize() Create and Free the internal
+        TStringlist. Each instance has its own unique internal TStringlist, 
+        so no need for reference counting on the internal TStringlist.
         Basically, A := B is the same as A.Assign(B)
-    (2) Implicits allow you to pass a StringList to TObject, TPersistent, 
+    (2) Implicits allow you to pass a StringList to TObject, TPersistent,
         TStrings, and TStringlist.
 
   Differences to TStringlist:
@@ -36,6 +36,19 @@ need to be created/freed.
 
  Other:   
 
-    (1) This is based on Delphi's TStringlist implementation as of Delphi 12.  If using
-        with an older version of Delphi, you may need to remove refences to
-        missing members that were not present in an ealier version of Delphi.
+    (1) This is based on Delphi's TStringlist implementation as of Delphi 12.
+        If using with an older version of Delphi, you may need to remove refences
+        to missing members that were not present in an ealier version of Delphi.
+        
+    (2) Stringlist records can be "re-constructed"/reinitialized using:
+          MyStrings := Stringlist.Default
+            - Create a new default Stringlist
+          MyStrings := Stringlist.Default(...)
+            - Create a new Stringlist with specified properties (like TStringlist constructors)
+          MyStrings := Stringlist.Default(Strings1)
+            - Create a new TRgdStringlist with same properties as Strings1.
+
+        WARNING, DO NOT USE:  MyStrings := Default(Stringlist);
+          as this causes a memory leak as MyStringlist gets Initialized twice and finalized once
+          and the original FData does not get freed.  Not sure why yet, cuz I thought it should.
+          INSTEAD, use MyStrings := Stringlist.Default;}
