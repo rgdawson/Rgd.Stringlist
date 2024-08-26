@@ -2,7 +2,8 @@ Unit Rgd.Stringlist;
 
 { StringList is a  Delphi Custom Managed Record implementation of TStringlist.
   Stringlist does not need to be explcitly created/freed in your code.
-
+  https://blogs.embarcadero.com/custom-managed-records-coming-to-delphi-10-4/
+  
   Usage Example:
 
     procedure MyProc;
