@@ -1,7 +1,7 @@
 # Rgd.Stringlist
 A Delphi Custom Managed Record implementation of TStringlist
 
-TRgdStringlist is a record variable replacement for TStringList that does not 
+Stringlist is a record variable replacement for TStringList that does not 
 need to be created/freed.  
 
   Usage Example:
