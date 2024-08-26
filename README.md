@@ -15,7 +15,7 @@ need to be created/freed.
       RichEdit.Lines.AddStrings(strings);
     end;
 
-  Custm Managed Record class operators:
+  Custom Managed Record class operators:
 
     (1) This implementation uses Delphi's Custom Managed Record class operators.
         I use the class operator Initialize() and Finalize() to Create/Free 
