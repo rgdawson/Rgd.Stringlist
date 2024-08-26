@@ -11,7 +11,7 @@ Unit Rgd.Stringlist;
     begin
       LStrings.Add('test1');
       LStrings.Add('test2');
-      RichEdit.Lines.AddStrings(LStrings);
+      Memo1.Lines.AddStrings(LStrings);
     end;
 
   Custom Managed Record class operators:
