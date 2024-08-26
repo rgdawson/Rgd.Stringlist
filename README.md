@@ -8,11 +8,11 @@ need to be created/freed.
 
     procedure MyProc;
     var
-      strings: StringList;
+      LStrings: StringList;
     begin
-      strings.Add('test1');
-      strings.Add('test2');
-      RichEdit.Lines.AddStrings(strings);
+      LStrings.Add('test1');
+      LStrings.Add('test2');
+      RichEdit.Lines.AddStrings(LStrings);
     end;
 
   Custom Managed Record class operators:
