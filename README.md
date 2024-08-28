@@ -48,7 +48,7 @@ need to be created/freed.
           MyStrings := Stringlist.Default(...)
             - Create a new Stringlist with specified properties (like TStringlist constructors)
           MyStrings := Stringlist.Default(Strings1)
-            - Create a new TRgdStringlist with same properties as Strings1.
+            - Create a new Stringlist with same properties as Strings1.
 
         WARNING, DO NOT USE:  MyStrings := Default(Stringlist);
           as this causes a memory leak where MyStrings gets Initialized twice and finalized once
