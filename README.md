@@ -18,8 +18,8 @@ need to be created/freed.
 
   Custom Managed Record class operators:
   
-    (1) This implementation uses Delphi's Custom Managed Record class operators Initialize, Finalize, and 
-        Assign which were introduced in Delphi 10.4.
+    (1) This implementation uses Delphi's Custom Managed Record class operators to Initialize, 
+        Finalize, and Assign which were introduced in Delphi 10.4.
     (1) The class operators Initialize() and Finalize() Create and Free the internal
         TStringlist. Each instance has its own unique internal TStringlist, 
         so no need for reference counting on the internal TStringlist.
@@ -48,7 +48,7 @@ need to be created/freed.
           MyStrings := Stringlist.Default(...)
             - Create a new Stringlist with specified properties (like TStringlist constructors)
           MyStrings := Stringlist.Default(Strings1)
-            - Create a new TRgdStringlist with same properties as Strings1.
+            - Create a new Stringlist with same properties as Strings1.
 
         WARNING, DO NOT USE:  MyStrings := Default(Stringlist);
           as this causes a memory leak where MyStrings gets Initialized twice and finalized once
