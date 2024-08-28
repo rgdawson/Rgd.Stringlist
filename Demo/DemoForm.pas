@@ -193,6 +193,7 @@ end;
 
 function AllCaps(const Strings: Stringlist): Stringlist;
 begin
+  Result := Stringlist.Default;
   Result.Text := UpperCase(Strings.Text);
 end;
 
