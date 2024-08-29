@@ -50,7 +50,7 @@ Unit Rgd.Stringlist;
 
         WARNING, DO NOT USE:  MyStrings := Default(Stringlist);
           as this causes a memory leak as Default(T) finalizes MyStrings without calling our own
-          Finalize operator and the original FData does not get freed.  So,
+          Finalize operator and the original FData does not get freed.  Incidently,
             System.Finalize(MyStrings);
             MyStrings := Default(Stringlist);
           would avoid a memory leak.
@@ -130,7 +130,7 @@ type
   public
     class operator Initialize(out Dest: TRgdStringlist);
     class operator Finalize(var Dest: TRgdStringlist);
-    class operator Assign(var Dest: TRgdStringlist; const [ref] Source: TRgdStringlist);
+    class operator Assign(var Dest, Source: TRgdStringlist);
     class operator Implicit(const AValue: TRgdStringlist): TObject;
     class operator Implicit(const AValue: TRgdStringlist): TPersistent;
     class operator Implicit(const AValue: TRgdStringlist): TStrings;
@@ -221,8 +221,8 @@ type
     class function Default(const RgdStrings: TRgdStringlist): TRgdStringlist; overload; static;
     {Additional methods}
     function CommaText2: string;
-    function IndexOfSubString    (SubStr: string): integer;
-    function IndexOfSubText      (SubText: string): integer;
+    function IndexOfSubString(SubStr: string): integer;
+    function IndexOfSubText(SubText: string): integer;
     function Reversed: TRgdStringlist;
     procedure AlignDelimiters(const DelimStr: string);
     procedure SetStrings(StrArray: array of string); overload;
@@ -252,7 +252,7 @@ begin
   Dest.FData.Free;
 end;
 
-class operator TRgdStringlist.Assign(var Dest: TRgdStringlist; const [ref] Source: TRgdStringlist);
+class operator TRgdStringlist.Assign(var Dest, Source: TRgdStringlist);
 begin
   Dest.FData.Assign(Source.FData);
 end;
