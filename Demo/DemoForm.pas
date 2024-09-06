@@ -24,20 +24,24 @@ type
   end;
 
   TMainForm = class(TForm)
-    btnTest1: TButton;
+    btnOperators: TButton;
     Memo1: TMemo;
     btnAlign: TButton;
-    Button9: TButton;
+    btnSets: TButton;
     btnClear: TButton;
     btnClose: TButton;
     btnFunctionResult: TButton;
-    procedure btnTest1Click(Sender: TObject);
+    btnBasic: TButton;
+    btnConstructors: TButton;
+    procedure btnOperatorsClick(Sender: TObject);
     procedure btnAlignClick(Sender: TObject);
-    procedure Button9Click(Sender: TObject);
+    procedure btnSetsClick(Sender: TObject);
     procedure btnClearClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure btnCloseClick(Sender: TObject);
     procedure btnFunctionResultClick(Sender: TObject);
+    procedure btnBasicClick(Sender: TObject);
+    procedure btnConstructorsClick(Sender: TObject);
   private
     //
   public
@@ -70,6 +74,21 @@ begin
     Result[Ch] := ACharSequence.Chars[Random(SequenceLength)];
 end;
 
+procedure TMainForm.btnBasicClick(Sender: TObject);
+var
+  Strings1: Stringlist;
+  Strings2: Stringlist;
+begin
+  Memo1.Lines.Add(StringOfChar('=', 70));
+  Memo1.Lines.Add('BEGIN: Assignment');
+  Memo1.Lines.Add(StringOfChar('-', 70));
+  Strings1.AddStrings(['CCCCC', 'BBBBB', 'DDDDD', 'AAAA']);
+  Strings2 := Strings1;
+  Memo1.Lines.Add(StringOfChar('-', 70));
+  Memo1.Lines.Add('END: Assignment');
+  Memo1.Lines.Add(StringOfChar('=', 70));
+end;
+
 procedure TMainForm.btnClearClick(Sender: TObject);
 begin
   Memo1.Lines.Clear;
@@ -78,6 +97,20 @@ end;
 procedure TMainForm.btnCloseClick(Sender: TObject);
 begin
   Close;
+end;
+
+procedure TMainForm.btnConstructorsClick(Sender: TObject);
+var
+  Strings1: Stringlist;
+begin
+  Memo1.Lines.Add(StringOfChar('=', 70));
+  Memo1.Lines.Add('BEGIN: Constructors');
+  Memo1.Lines.Add(StringOfChar('-', 70));
+  Strings1 := Stringlist.Default(dupAccept, True, False);
+  Strings1.AddStrings(['CCCCC', 'BBBBB', 'DDDDD', 'AAAA']);
+  Memo1.Lines.Add(StringOfChar('-', 70));
+  Memo1.Lines.Add('END: Constructors');
+  Memo1.Lines.Add(StringOfChar('=', 70));
 end;
 
 function SortStringList_ValParam(AStringList: StringList): Stringlist;
@@ -92,7 +125,7 @@ begin
   Result := AStringlist;
 end;
 
-procedure TMainForm.btnTest1Click(Sender: TObject);
+procedure TMainForm.btnOperatorsClick(Sender: TObject);
 var
   Strings1: Stringlist;
   Strings2: Stringlist;
@@ -163,9 +196,9 @@ var
   SL0, SL1: Stringlist;
 begin
   Memo1.Lines.BeginUpdate;
-  Memo1.Lines.Add('======================');
+  Memo1.Lines.Add(StringOfChar('=', 70));
   Memo1.Lines.Add('BEGIN: Delimiter Align ');
-  Memo1.Lines.Add('----------------------');
+  Memo1.Lines.Add(StringOfChar('-', 70));
 
   for i := 0 to 9 do
   begin
@@ -179,22 +212,24 @@ begin
   end;
 
   Memo1.Lines.AddStrings(SL1);
-  Memo1.Lines.Add('---------------------------');
+  Memo1.Lines.Add(StringOfChar('-', 70));
   Memo1.Lines.Add('Call: SL1.AlignDelimiters()');
-  Memo1.Lines.Add('---------------------------');
+  Memo1.Lines.Add(StringOfChar('-', 70));
   SL1.Text := Trim(ReplaceStr(Sl1.Text, ',', ', '));
   SL1.AlignDelimiters(',');
   Memo1.Lines.AddStrings(SL1);
-  Memo1.Lines.Add('----------------------');
+  Memo1.Lines.Add(StringOfChar('-', 70));
   Memo1.Lines.Add('END: Delimiter Align ');
-  Memo1.Lines.Add('======================');
+  Memo1.Lines.Add(StringOfChar('=', 70));
   Memo1.Lines.EndUpdate;
 end;
 
 function AllCaps(const Strings: Stringlist): Stringlist;
 begin
+  MainForm.Memo1.Lines.Add('BEGIN: function AllCaps(const Strings: Stringlist): Stringlist;');
   Result := Stringlist.Default;
   Result.Text := UpperCase(Strings.Text);
+  MainForm.Memo1.Lines.Add('END: function AllCaps();');
 end;
 
 procedure TMainForm.btnFunctionResultClick(Sender: TObject);
@@ -203,7 +238,9 @@ var
 begin
   Memo1.Lines.BeginUpdate;
   Memo1.Lines.Add(StringOfChar('=', 70));
-  Memo1.Lines.Add('BEGIN: function AllCaps(): Stringlist');
+  Memo1.Lines.Add('BEGIN: Function Result [i.e. function AllCaps(const Strings: Stringlist): Stringlist]');
+  Memo1.Lines.Add(StringOfChar('-', 70));
+  Memo1.Lines.Add('Code: SL1.AddStrings([''Greg'', ''Monica'', ''Robert'', ''Bob'', ''Mark'']);');
   SL1.AddStrings(['Greg', 'Monica', 'Robert', 'Bob', 'Mark']);
 
   Memo1.Lines.Add(StringOfChar('-', 70));
@@ -212,7 +249,6 @@ begin
   SL2 := AllCaps(SL1);
   Memo1.Lines.Add(StringOfChar('-', 70));
   Memo1.Lines.AddStrings(SL2);
-  Memo1.Lines.Add(Format('Count = %d', [SL2.Count]));
   Memo1.Lines.Add(StringOfChar('-', 70));
 
   Memo1.Lines.Add('Code: SL1 := AllCaps(SL1);');
@@ -220,17 +256,14 @@ begin
   SL1 := AllCaps(SL1);
   Memo1.Lines.Add(StringOfChar('-', 70));
   Memo1.Lines.AddStrings(SL1);
-  Memo1.Lines.Add(Format('Count = %d', [SL1.Count]));
   Memo1.Lines.Add(StringOfChar('-', 70));
 
-  //SL1 := SL1;
-  //SL2 := Sl1;
-  Memo1.Lines.Add('END: function AllCaps(): Stringlist');
+  Memo1.Lines.Add('END: Function Result');
   Memo1.Lines.Add(StringOfChar('=', 70));
   Memo1.Lines.EndUpdate;
 end;
 
-procedure TMainForm.Button9Click(Sender: TObject);
+procedure TMainForm.btnSetsClick(Sender: TObject);
 var
   SL1, SL2, SL3: Stringlist;
 begin
@@ -249,6 +282,12 @@ begin
   Memo1.Lines.Add(StringOfChar('-', 70));
   Sl3.Sorted := True;
   SL3 := SL1.IntersectWith(SL2);
+  Memo1.Lines.Add('SL3 = ' + SL3.CommaText);
+  Memo1.Lines.Add(StringOfChar('-', 70));
+  Memo1.Lines.Add('Code: SL3 := SL1.UnionWith(SL2);');
+  Memo1.Lines.Add(StringOfChar('-', 70));
+  Sl3.Sorted := True;
+  SL3 := SL1.UnionWith(SL2);
   Memo1.Lines.Add('SL3 = ' + SL3.CommaText);
   Memo1.Lines.Add(StringOfChar('-', 70));
   Memo1.Lines.Add('END: Set Intersection');

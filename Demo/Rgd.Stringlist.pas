@@ -40,21 +40,20 @@ Unit Rgd.Stringlist;
         If using with an older version of Delphi, you may need to remove refences
         to missing members that were not present in an ealier version of Delphi.
 
-    (2) Stringlist records can be "re-constructed"/reinitialized using:
+    (2) TRgdStringlist records get initialized automatically.  However,
+        Stringlist records can be "re-constructed"/reinitialized using:
           MyStrings := Stringlist.Default
-            - Create a new default Stringlist
-          MyStrings := Stringlist.Default(...)
-            - Create a new Stringlist with specified properties (like TStringlist constructors)
+            - Re-create a new default Stringlist
+          MyStrings := Stringlist.Default(...params...)
+            - Re-create a new Stringlist with specified properties (like TStringlist constructors)
           MyStrings := Stringlist.Default(Strings1)
-            - Create a new TRgdStringlist with same properties as Strings1.
+            - Re-create a new Stringlist with same properties as Strings1.
 
         WARNING, DO NOT USE:  MyStrings := Default(Stringlist);
-          as this causes a memory leak as Default(T) finalizes MyStrings without calling our own
-          Finalize operator and the original FData does not get freed.  Incidently,
-            System.Finalize(MyStrings);
-            MyStrings := Default(Stringlist);
-          would avoid a memory leak.
-          THEREFORE, INSTEAD, use MyStrings := Stringlist.Default;}
+          The Default(T) function in Delphi seems to be incompatable with
+          Custom Managed Records.  A memory leak is caused as Default(T) zero-izes
+          MyStrings without calling our own Finalize operator and the original FData does not get freed.
+        THEREFORE, INSTEAD, use MyStrings := Stringlist.Default;}
 
 Interface
 
