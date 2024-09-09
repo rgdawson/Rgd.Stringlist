@@ -82,8 +82,12 @@ begin
   Memo1.Lines.Add(StringOfChar('=', 70));
   Memo1.Lines.Add('BEGIN: Assignment');
   Memo1.Lines.Add(StringOfChar('-', 70));
+  Strings1 := Stringlist.Default(dupAccept, True, False);
+//  Strings1.Duplicates := dupAccept;
+//  Strings1.Sorted := TRUE;
   Strings1.AddStrings(['CCCCC', 'BBBBB', 'DDDDD', 'AAAA']);
   Strings2 := Strings1;
+  Memo1.Lines.AddStrings(Strings2);
   Memo1.Lines.Add(StringOfChar('-', 70));
   Memo1.Lines.Add('END: Assignment');
   Memo1.Lines.Add(StringOfChar('=', 70));
@@ -132,7 +136,7 @@ var
 begin
   Memo1.Lines.BeginUpdate;
   Memo1.Lines.Add(StringOfChar('=', 70));
-  Memo1.Lines.Add('BEGIN: Stringlist class operators ');
+  Memo1.Lines.Add('BEGIN: Value/Const Parameters ');
   Memo1.Lines.Add(StringOfChar('-', 70));
   Memo1.Lines.Add('Code: Strings1 := Stringlist.Default(dupIgnore, True, False);');
   Memo1.Lines.Add(StringOfChar('-', 70));
@@ -184,7 +188,7 @@ begin
   Memo1.Lines.AddStrings(Strings2);
 
   Memo1.Lines.Add(StringOfChar('-', 70));
-  Memo1.Lines.Add('END: Stringlist class operators ');
+  Memo1.Lines.Add('END: Value/Const Parameters ');
   Memo1.Lines.Add(StringOfChar('=', 70));
   Memo1.Lines.EndUpdate;
 end;
