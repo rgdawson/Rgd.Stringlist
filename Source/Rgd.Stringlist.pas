@@ -880,7 +880,7 @@ begin
   Result.QuoteChar := RgdStrings.QuoteChar;
   Result.NameValueSeparator := RgdStrings.NameValueSeparator;
   Result.Options := RgdStrings.Options;
-  Result.OwnsObjects := False;
+  Result.OwnsObjects := RgdStrings.OwnsObjects;
 end;
 
 
