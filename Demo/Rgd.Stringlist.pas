@@ -593,7 +593,6 @@ end;
 
 function TRgdStringlist.GetValue(const Name: string): string;
 begin
-{!  //Result := FData.Values['Name']; }
   Result := FData.Values[Name];
 end;
 
