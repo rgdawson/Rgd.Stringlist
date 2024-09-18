@@ -19,19 +19,22 @@ Unit Rgd.Stringlist;
 
     (1) This implementation uses Delphi's Custom Managed Record class operators.
         The class operators Initialize() and Finalize() Create and Free the internal
-        TStringlist. Each instance has its own unique internal TStringlist, 
+        TStringlist. Each instance has its own unique internal TStringlist,
         so no need for reference counting on the internal TStringlist.
         Basically, A := B is the same as A.Assign(B)
+
     (2) Implicits allow you to pass a StringList to TObject, TPersistent,
         TStrings, and TStringlist.
 
   Differences with a regular TStringlist
 
-    (1) When passing a StringList as a value parameter to a function, instead 
-        of var or const, a new record gets created and all the strings are copied 
+    (1) When passing a StringList as a value parameter to a function, instead
+        of var or const, a new record gets created and all the strings are copied
         to the new record's internal TStringlist, leaving the original unchanged.
+
     (2) CommaText property always uses StrictDelimiter = True (my own preference)
         Use DelimitedText property if you need StrictDelimer = False.
+
     (3) Some additional functions have been added, such as set functions, and more...
 
   Other:
@@ -39,7 +42,7 @@ Unit Rgd.Stringlist;
     (1) This is based on Delphi's TStringlist implementation as of Delphi 12.
         If using with an older version of Delphi, you may need to remove refences
         to missing members that were not present in an ealier version of Delphi.
-        
+
     (2) TRgdStringlist records get initialized automatically.  However,
         Stringlist records can be "re-constructed"/reinitialized using:
           MyStrings := Stringlist.Default
@@ -281,76 +284,76 @@ end;
 class function TRgdStringlist.Default: TRgdStringlist;
 begin
   Result.FData.Clear;
-  Result.DefaultEncoding := TEncoding.Default;
-  Result.LineBreak := sLineBreak;
-  Result.Delimiter := ',';
-  Result.QuoteChar := '"';
+  Result.DefaultEncoding    := TEncoding.Default;
+  Result.LineBreak          := sLineBreak;
+  Result.Delimiter          := ',';
+  Result.QuoteChar          := '"';
   Result.NameValueSeparator := '=';
-  Result.Options := [soWriteBOM, soTrailingLineBreak, soUseLocale];
-  Result.CaseSensitive := False;
-  Result.Duplicates := dupIgnore;
-  Result.Sorted := False;
-  Result.OwnsObjects := FALSE;
+  Result.Options            := [soWriteBOM, soTrailingLineBreak, soUseLocale];
+  Result.CaseSensitive      := FALSE;
+  Result.Duplicates         := dupIgnore;
+  Result.Sorted             := FALSE;
+  Result.OwnsObjects        := FALSE;
 end;
 
 class function TRgdStringlist.Default(OwnsObjects: Boolean): TRgdStringlist;
 begin
   Result.FData.Clear;
-  Result.DefaultEncoding := TEncoding.Default;
-  Result.LineBreak := sLineBreak;
-  Result.Delimiter := ',';
-  Result.QuoteChar := '"';
+  Result.DefaultEncoding    := TEncoding.Default;
+  Result.LineBreak          := sLineBreak;
+  Result.Delimiter          := ',';
+  Result.QuoteChar          := '"';
   Result.NameValueSeparator := '=';
-  Result.Options := [soWriteBOM, soTrailingLineBreak, soUseLocale];
-  Result.CaseSensitive := False;
-  Result.Duplicates := dupIgnore;
-  Result.Sorted := False;
-  Result.OwnsObjects := OwnsObjects;
+  Result.Options            := [soWriteBOM, soTrailingLineBreak, soUseLocale];
+  Result.CaseSensitive      := FALSE;
+  Result.Duplicates         := dupIgnore;
+  Result.Sorted             := FALSE;
+  Result.OwnsObjects        := OwnsObjects;
 end;
 
 class function TRgdStringlist.Default(QuoteChar, Delimiter: Char): TRgdStringlist;
 begin
   Result.FData.Clear;
-  Result.DefaultEncoding := TEncoding.Default;
-  Result.LineBreak := sLineBreak;
-  Result.Delimiter := Delimiter;
-  Result.QuoteChar := QuoteChar;
+  Result.DefaultEncoding    := TEncoding.Default;
+  Result.LineBreak          := sLineBreak;
+  Result.Delimiter          := Delimiter;
+  Result.QuoteChar          := QuoteChar;
   Result.NameValueSeparator := '=';
-  Result.Options := [soWriteBOM, soTrailingLineBreak, soUseLocale];
-  Result.CaseSensitive := False;
-  Result.Duplicates := dupIgnore;
-  Result.Sorted := False;
-  Result.OwnsObjects := FALSE;
+  Result.Options            := [soWriteBOM, soTrailingLineBreak, soUseLocale];
+  Result.CaseSensitive      := FALSE;
+  Result.Duplicates         := dupIgnore;
+  Result.Sorted             := FALSE;
+  Result.OwnsObjects        := FALSE;
 end;
 
 class function TRgdStringlist.Default(QuoteChar, Delimiter: Char; Options: TStringsOptions): TRgdStringlist;
 begin
   Result.FData.Clear;
-  Result.DefaultEncoding := TEncoding.Default;
-  Result.LineBreak := sLineBreak;
-  Result.Delimiter := Delimiter;
-  Result.QuoteChar := QuoteChar;
+  Result.DefaultEncoding    := TEncoding.Default;
+  Result.LineBreak          := sLineBreak;
+  Result.Delimiter          := Delimiter;
+  Result.QuoteChar          := QuoteChar;
   Result.NameValueSeparator := '=';
-  Result.Options := Options;
-  Result.CaseSensitive := FALSE;
-  Result.Duplicates := dupIgnore;
-  Result.Sorted := FALSE;
-  Result.OwnsObjects := FALSE;
+  Result.Options            := Options;
+  Result.CaseSensitive      := FALSE;
+  Result.Duplicates         := dupIgnore;
+  Result.Sorted             := FALSE;
+  Result.OwnsObjects        := FALSE;
 end;
 
 class function TRgdStringlist.Default(Duplicates: TDuplicates; Sorted: Boolean; CaseSensitive: Boolean = False): TRgdStringlist;
 begin
   Result.FData.Clear;
-  Result.DefaultEncoding := TEncoding.Default;
-  Result.LineBreak := sLineBreak;
-  Result.Delimiter := ',';
-  Result.QuoteChar := '"';
+  Result.DefaultEncoding    := TEncoding.Default;
+  Result.LineBreak          := sLineBreak;
+  Result.Delimiter          := ',';
+  Result.QuoteChar          := '"';
   Result.NameValueSeparator := '=';
-  Result.Options := [soWriteBOM, soTrailingLineBreak, soUseLocale];
-  Result.CaseSensitive := CaseSensitive;
-  Result.Duplicates := Duplicates;
-  Result.Sorted := Sorted;
-  Result.OwnsObjects := FALSE;
+  Result.Options            := [soWriteBOM, soTrailingLineBreak, soUseLocale];
+  Result.CaseSensitive      := CaseSensitive;
+  Result.Duplicates         := Duplicates;
+  Result.Sorted             := Sorted;
+  Result.OwnsObjects        := FALSE;
 end;
 
 {$ENDREGION}
@@ -853,36 +856,34 @@ end;
 class function TRgdStringlist.Default(QuoteChar, Delimiter: Char; StrictDelimiter: Boolean): TRgdStringlist;
 begin
   Result.FData.Clear;
-  Result.DefaultEncoding := TEncoding.Default;
-  Result.LineBreak := sLineBreak;
-  Result.Delimiter := Delimiter;
-  Result.QuoteChar := QuoteChar;
+  Result.DefaultEncoding    := TEncoding.Default;
+  Result.LineBreak          := sLineBreak;
+  Result.Delimiter          := Delimiter;
+  Result.QuoteChar          := QuoteChar;
   Result.NameValueSeparator := '=';
-  Result.Options := [soWriteBOM, soTrailingLineBreak, soUseLocale];
-  if StrictDelimiter then
-    Result.Options := Result.Options + [soStrictDelimiter];
-  Result.CaseSensitive := False;
-  Result.Duplicates := dupIgnore;
-  Result.Sorted := False;
-  Result.OwnsObjects := FALSE;
+  Result.Options            := [soWriteBOM, soTrailingLineBreak, soUseLocale];
+  Result.StrictDelimiter    := StrictDelimiter;
+  Result.CaseSensitive      := FALSE;
+  Result.Duplicates         := dupIgnore;
+  Result.Sorted             := FALSE;
+  Result.OwnsObjects        := FALSE;
 end;
 
 class function TRgdStringlist.Default(const RgdStrings: TRgdStringlist): TRgdStringlist;
 {This constructs a new record that inherits the properties of RgdStrings param}
 begin
   Result.FData.Clear;
-  Result.CaseSensitive := RgdStrings.CaseSensitive;
-  Result.Duplicates := RgdStrings.Duplicates;
-  Result.Sorted := RgdStrings.Sorted;
-  Result.DefaultEncoding := RgdStrings.DefaultEncoding;
-  Result.LineBreak := RgdStrings.LineBreak;
-  Result.Delimiter := RgdStrings.Delimiter;
-  Result.QuoteChar := RgdStrings.QuoteChar;
+  Result.DefaultEncoding    := RgdStrings.DefaultEncoding;
+  Result.LineBreak          := RgdStrings.LineBreak;
+  Result.Delimiter          := RgdStrings.Delimiter;
+  Result.QuoteChar          := RgdStrings.QuoteChar;
   Result.NameValueSeparator := RgdStrings.NameValueSeparator;
-  Result.Options := RgdStrings.Options;
-  Result.OwnsObjects := RgdStrings.OwnsObjects;
+  Result.Options            := RgdStrings.Options;
+  Result.CaseSensitive      := RgdStrings.CaseSensitive;
+  Result.Duplicates         := RgdStrings.Duplicates;
+  Result.Sorted             := RgdStrings.Sorted;
+  Result.OwnsObjects        := RgdStrings.OwnsObjects;
 end;
-
 
 {Additional Methods...}
 
