@@ -51,6 +51,7 @@ need to be created/freed.
             - Create a new Stringlist with same properties as Strings1.
 
         WARNING, DO NOT USE:  MyStrings := Default(Stringlist);
-          as this causes a memory leak where MyStrings gets Initialized twice and finalized once
+          Default(T) is apparently not compatible with Custom Managed Records and
+          causes a memory leak where MyStrings gets Initialized twice and finalized once
           and the original FData does not get freed.
           INSTEAD, use: MyStrings := Stringlist.Default;
